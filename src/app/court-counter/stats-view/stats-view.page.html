@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color  = "primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+  </ion-buttons>
+    <ion-title>Match Statistics</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card  class="bg-transparent">
+    <ion-card-content>
+     <ion-grid >  
+      <ion-row >
+        <ion-col >
+          <div *ngIf = "teamA">
+          <ion-row></ion-row> 
+          <ion-row>{{ teamA.name }}</ion-row> 
+          <ion-row>{{ teamA.scoreCount }}</ion-row> 
+          <ion-row>{{ teamA.offSide }}</ion-row> 
+          <ion-row>{{ teamA.yellowCard }}</ion-row> 
+          <ion-row>{{ teamA.redCard }}</ion-row>
+        </div> 
+        </ion-col>
+        <ion-col>  
+          <ion-row>VS</ion-row> 
+          <ion-row>Goals</ion-row> 
+          <ion-row>OffSides</ion-row> 
+          <ion-row>Yellow</ion-row> 
+          <ion-row>Red</ion-row> 
+        </ion-col>
+        <ion-col>
+          <div *ngIf = "teamB">
+          <ion-row></ion-row> 
+          <ion-row>{{ teamB.name }}</ion-row> 
+          <ion-row>{{ teamB.scoreCount }}</ion-row> 
+          <ion-row>{{ teamB.offSide }}</ion-row> 
+          <ion-row>{{ teamB.yellowCard }}</ion-row> 
+          <ion-row>{{ teamB.redCard }}</ion-row> 
+          </div>
+        </ion-col>
+      </ion-row>
+   <ion-row>
+        <ion-item>
+          <div *ngIf = "teamA.scoreCount > teamB.scoreCount">
+              <p>{{ teamA.name }} won by {{ teamA.scoreCount }} goals to
+                 {{teamB.scoreCount}} agaist {{ teamB.name}}</p>
+          </div>
+          <div *ngIf = "teamA.scoreCount < teamB.scoreCount">
+            <p>{{ teamB.name }} managed to score  {{ teamB.scoreCount }} to
+               {{teamA.scoreCount}} agaist {{ teamA.name}} away.</p>
+        </div>
+        </ion-item>
+      </ion-row>
+
+    </ion-grid>
+    </ion-card-content>
+    </ion-card>
+    
+    
+
+
+</ion-content>

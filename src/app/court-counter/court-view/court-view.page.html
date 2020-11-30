@@ -1,0 +1,152 @@
+<ion-header>
+  <ion-toolbar color  = "primary">  
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+
+      <ion-title>Court Counter</ion-title>
+      <ion-buttons slot="end">
+          <ion-button fill="clear"  (click)="showStats()">
+              <ion-icon name='right'></ion-icon>Stats
+              <ion-badge></ion-badge>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+ <ion-content padding>
+
+  <ng-template [ngIf]="teamNameNotSelected" [ngIfElse] = "falseValue">
+
+    <ion-card class="bg-transparent">
+      <ion-card-header>
+        Please enter team names
+      </ion-card-header>
+      <ion-list>
+        <ion-item  lines="none">
+          <ion-label color="danger" position="floating">TeamA</ion-label>
+          <ion-input type="text" [(ngModel)]= "teamA.name"></ion-input>
+        </ion-item>
+        <ion-item color="none" lines="none">
+          <ion-label color="primary" position="floating">TeamB</ion-label>
+          <ion-input type="text" [(ngModel)]= "teamB.name "> </ion-input>
+      
+        </ion-item>
+       </ion-list>
+       <ion-button expand="block" color="danger"  (click)= "addTeams(teamA.name,teamB.name)">Launch Match</ion-button>
+ 
+    </ion-card>
+  </ng-template>
+
+  <ng-template #falseValue>
+  <ion-grid >
+      <ion-row>
+        <ion-col color = "primary" size =  "6" *ngIf = "teamA">
+          <div color = "primary"> 
+             <ion-list style="align-items: center;" class ="ion-card">
+               <ion-item> <ion-label style="align-self: center;" expand="full" color="dark" ><b>{{ teamA.name}}</b></ion-label> </ion-item>            
+               <ion-card style="align-items: center;"  color="primary"> 
+                        
+                <ion-grid >
+                    
+                  <ion-row >
+                   <ion-col size = "12"><div *ngIf = "teamA"><ion-button expand="block" >{{teamA.scoreCount }}</ion-button></div></ion-col>
+                    </ion-row>
+                  <ion-row expand="block" style="align-self: center;">
+                    <ion-col size = "6"><div><ion-fab-button (click)= "noGoalA()">-</ion-fab-button></div></ion-col>
+                    <ion-col size = "6"><div><ion-fab-button (click)= "addGoalA()">+</ion-fab-button></div></ion-col>
+                  </ion-row>
+                  <ion-row   horizontal = "center">
+                    <div style="align-self: center;">
+                      <ion-fab-button expand="block" color="warning" (click)= "addYellowA()" > {{ teamA.yellowCard}}</ion-fab-button> 
+                     <ion-fab-button expand="block" color="danger" (click)= "addRedA()" > {{ teamA.redCard}}</ion-fab-button>
+                     <ion-fab-button expand="block" color="dark"(click) = "addOffsideA()">{{ teamA.offSide }}</ion-fab-button>
+                    </div>
+
+                    <!-- <ion-buttons>
+                      <ion-fab vertical = "bottom" horizontal = "center" slot = "fixed">
+                        <ion-fab-button>
+                          <ion-icon name = "add"> </ion-icon>
+                        </ion-fab-button>
+                      </ion-fab>
+                </ion-buttons> -->
+
+                  </ion-row>
+
+                </ion-grid>
+                    
+              </ion-card>
+             
+              </ion-list>
+          </div>
+        </ion-col>
+        <ion-col size =  "6" *ngIf = "teamB">
+          <div>
+             <ion-list>
+               <ion-item> <ion-label style="align-self: center;" expand="full" color="dark" ><b>{{ teamB.name}}</b></ion-label> </ion-item>            
+               <ion-card color="primary">          
+                <ion-grid >    
+                  <ion-row >
+                   <ion-col size = "12"><div *ngIf = "teamB"><ion-button expand="block" >{{ teamB.scoreCount }}</ion-button></div></ion-col>
+                    </ion-row>
+                  <ion-row expand="block" style="align-self: center;">
+                    <ion-col size = "6"><div><ion-fab-button (click)= "noGoalB()">-</ion-fab-button></div></ion-col>
+                    <ion-col size = "6"><div><ion-fab-button (click)= "addGoalB()">+</ion-fab-button></div></ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <div style="align-self: center;">
+                      <ion-fab-button  expand="block" color="warning" (click)= "addYellowB()" >{{ teamB.yellowCard}}</ion-fab-button>
+               <ion-fab-button expand="block" color="danger" (click)= "addRedB()" >{{ teamB.redCard}}</ion-fab-button>
+               <ion-fab-button expand="block" color="dark"(click) = "addOffsideB()">{{ teamB.offSide }}</ion-fab-button>
+                </div>
+                  </ion-row>
+                </ion-grid>
+                    
+              </ion-card>
+                </ion-list>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button expand="block" color="danger" (click) ="endMatch()"  > End Match</ion-button>
+<ion-button expand="block" color="secondary" (click)= "resetMatch()" >Reset</ion-button>
+
+<ion-card *ngIf = "endGame"  class="bg-transparent">
+  <ion-card-content>
+   <ion-grid >  
+    <ion-row >
+      <ion-col >
+        <div *ngIf = "teamA">
+        <ion-row></ion-row> 
+        <ion-row>{{ teamA.name }}</ion-row> 
+        <ion-row>{{ teamA.scoreCount }}</ion-row> 
+        <ion-row>{{ teamA.offSide }}</ion-row> 
+        <ion-row>{{ teamA.yellowCard }}</ion-row> 
+        <ion-row>{{ teamA.redCard }}</ion-row>
+      </div> 
+      </ion-col>
+      <ion-col>  
+        <ion-row>VS</ion-row> 
+        <ion-row>Goals</ion-row> 
+        <ion-row>OffSides</ion-row> 
+        <ion-row>Yellow</ion-row> 
+        <ion-row>Red</ion-row> 
+      </ion-col>
+      <ion-col>
+        <div *ngIf = "teamB">
+        <ion-row></ion-row> 
+        <ion-row>{{ teamB.name }}</ion-row> 
+        <ion-row>{{ teamB.scoreCount }}</ion-row> 
+        <ion-row>{{ teamB.offSide }}</ion-row> 
+        <ion-row>{{ teamB.yellowCard }}</ion-row> 
+        <ion-row>{{ teamB.redCard }}</ion-row> 
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-card-content>
+  </ion-card>
+
+</ng-template>
+
+</ion-content>
