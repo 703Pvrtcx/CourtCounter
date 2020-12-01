@@ -4,19 +4,10 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
    {
     path: '',
-    redirectTo: 'court-view',
+    redirectTo:  'court-add',
     pathMatch: 'full'
   },
-   
     //Court Count Routing
-    {
-      path: 'court-view',
-      loadChildren: () => import('./court-counter/court-view/court-view.module').then( m => m.CourtViewPageModule)
-    },
-    {
-      path: 'stats-view',
-      loadChildren: () => import('./court-counter/stats-view/stats-view.module').then( m => m.StatsViewPageModule)
-    },
   {
     path: 'registration',
     loadChildren: () => import('./page/pages/sign-in/registration/registration.module').then( m => m.RegistrationPageModule)
@@ -32,6 +23,18 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./page/pages/sign-in/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'court-view',
+    loadChildren: () => import('./page/pages/court-counter/court-view/court-view.module').then( m => m.CourtViewPageModule)
+  },
+  {
+    path: 'court-stats',
+    loadChildren: () => import('./page/pages/court-counter/court-stats/court-stats.module').then( m => m.CourtStatsPageModule)
+  },
+  {
+    path: 'court-add',
+    loadChildren: () => import('./page/pages/court-counter/court-add/court-add.module').then( m => m.CourtAddPageModule)
   },
   
 ];

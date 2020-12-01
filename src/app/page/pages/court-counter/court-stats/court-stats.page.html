@@ -1,0 +1,44 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Match Statistics</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content >
+    <ion-card class="bg-transparent">
+        <ion-card-content>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <div *ngIf="teams[0]">
+                            <ion-row>{{ teams[0].name }}</ion-row>
+                            <ion-row>{{ teams[0].scoreCount }}</ion-row>
+                            <ion-row>{{ teams[0].offSide }}</ion-row>
+                            <ion-row>{{ teams[0].yellowCard }}</ion-row>
+                            <ion-row>{{ teams[0].redCard }}</ion-row>
+                        </div>
+                    </ion-col>
+                    <ion-col>
+                        <ion-row>VS</ion-row>
+                        <ion-row>Goals</ion-row>
+                        <ion-row>OffSides</ion-row>
+                        <ion-row>Yellow</ion-row>
+                        <ion-row>Red</ion-row>
+                    </ion-col>
+                    <ion-col>
+                        <div *ngIf="teams[1]">
+
+                            <ion-row>{{ teams[1].name }}</ion-row>
+                            <ion-row>{{ teams[1].scoreCount }}</ion-row>
+                            <ion-row>{{ teams[1].offSide }}</ion-row>
+                            <ion-row>{{ teams[1].yellowCard }}</ion-row>
+                            <ion-row>{{ teams[1].redCard }}</ion-row>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

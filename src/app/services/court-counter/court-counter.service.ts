@@ -8,6 +8,7 @@ export class CourtCounterService {
   cartList = [];
   teamA = [];
   teamB = [];
+  
   constructor() { }
 
   addToCart(item){

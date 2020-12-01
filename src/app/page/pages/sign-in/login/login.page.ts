@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
   logIn(email, password) {
     this.authService.SignIn(email.value, password.value)
       .then((res) => {
-        this.router.navigate(['court-view']);
+        this.router.navigate(['dashboard']);
         // if(this.authService.isEmailVerified) {
         //   this.router.navigate(['dashboard']);          
         // } else {

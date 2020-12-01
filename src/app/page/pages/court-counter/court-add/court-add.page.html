@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>court-add</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+      <ion-card class="bg-transparent">
+          <ion-list>
+              <ion-item lines="none">
+                  <ion-label color="danger" position="floating">Home Team</ion-label>
+                  <ion-input type="text" [(ngModel)]="teamName1"></ion-input>
+              </ion-item>
+              <ion-item lines="none">
+                  <ion-label color="primary" position="floating">Away Team</ion-label>
+                  <ion-input type="text" [(ngModel)]="teamName2"> </ion-input>
+
+              </ion-item>
+          </ion-list>
+          <ion-button expand="block" color="danger" (click)="setTeamName()">Launch Match</ion-button>
+      </ion-card>
+</ion-content>

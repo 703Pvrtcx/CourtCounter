@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { StatsViewPageRoutingModule } from './stats-view-routing.module';
+import { CourtAddPageRoutingModule } from './court-add-routing.module';
 
-import { StatsViewPage } from './stats-view.page';
+import { CourtAddPage } from './court-add.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    StatsViewPageRoutingModule
+    CourtAddPageRoutingModule
   ],
-  declarations: [StatsViewPage]
+  declarations: [CourtAddPage]
 })
-export class StatsViewPageModule {}
+export class CourtAddPageModule {}

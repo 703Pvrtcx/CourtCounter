@@ -11,6 +11,4 @@ class Team {
         this.redCard = 0;
         this.offSide = 0;
     }
-
-  
 }

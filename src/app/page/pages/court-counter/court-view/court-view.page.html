@@ -1,0 +1,105 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Court Counter</ion-title>
+        <ion-buttons slot="end" *ngIf="endGame">
+            <ion-button fill="clear" (click)="viewStats()">
+                <ion-icon name='stats-bars'></ion-icon>Stats
+                <ion-badge> </ion-badge>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding>
+        <ion-grid>
+            <ion-row>
+                <ion-col color="primary" size="6" *ngIf="teams[0]">
+                    <div color="primary">
+                        <ion-list style="align-items: center;" class="ion-card">
+                            <ion-item>
+                                <ion-label style="align-self: center;" expand="full" color="primary"><b>{{ teams[0].name}}</b></ion-label>
+                            </ion-item>
+                            <ion-card style="align-items: center;" color="primary">
+                                <ion-grid>
+
+                                    <ion-row>
+                                        <ion-col size="12">
+                                            <div *ngIf="teams[1]">
+                                                <ion-button expand="block">{{teams[0].scoreCount }}</ion-button>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row expand="block" style="align-self: center;">
+                                        <ion-col size="6">
+                                            <div>
+                                                <ion-fab-button (click)="decreaseSomething(0)">-</ion-fab-button>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col size="6">
+                                            <div>
+                                                <ion-fab-button (click)="increaseSomething(0)">+</ion-fab-button>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col>
+                                            <ion-button expand="block" color="warning" (click)="addYellow(0)">Yellow {{ teams[0].yellowCard}}</ion-button>
+                                            <ion-button expand="block" color="danger" (click)="addRed(0)">Red {{ teams[0].redCard}}</ion-button>
+                                            <ion-button expand="block" color="dark" (click)="addOffside(0)">Offside {{ teams[0].offSide }}</ion-button>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-card>
+                        </ion-list>
+                    </div>
+                </ion-col>
+
+
+
+                <ion-col color="primary" size="6" *ngIf="teams[1]">
+                    <div color="primary">
+                        <ion-list style="align-items: center;" class="ion-card">
+                            <ion-item>
+                                <ion-label style="align-self: center;" expand="full" color="dark"><b>{{ teams[1].name}}</b></ion-label>
+                            </ion-item>
+                            <ion-card style="align-items: center;" color="primary">
+                                <ion-grid>
+
+                                    <ion-row>
+                                        <ion-col size="12">
+                                            <div *ngIf="teams[1]">
+                                                <ion-button expand="block">{{teams[1].scoreCount }}</ion-button>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row expand="block" style="align-self: center;">
+                                        <ion-col size="6">
+                                            <div>
+                                                <ion-fab-button (click)="decreaseSomething(1)">-</ion-fab-button>
+                                            </div>
+                                        </ion-col>
+                                        <ion-col size="6">
+                                            <div>
+                                                <ion-fab-button (click)="increaseSomething(1)">+</ion-fab-button>
+                                            </div>
+                                        </ion-col>
+                                    </ion-row>
+                                    <ion-row>
+                                        <ion-col>
+                                            <ion-button expand="block" color="warning" (click)="addYellow(1)">Yellow {{ teams[1].yellowCard}}</ion-button>
+                                            <ion-button expand="block" color="danger" (click)="addRed(1)"> Red {{ teams[1].redCard}}</ion-button>
+                                            <ion-button expand="block" color="dark" (click)="addOffside(1)"> Offside {{ teams[1].offSide }}</ion-button>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-grid>
+                            </ion-card>
+                        </ion-list>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-button expand="block" *ngIf = "startGame"  color="danger" (click)="StopMatch()">End Match</ion-button>
+        <ion-button *ngIf = "endGame" expand="block" color="secondary" (click)="resetMatch()">Reset</ion-button>
+</ion-content>
